@@ -118,3 +118,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# JWT authentication settings
+
+ALGORITHM = 'HS256'
+ACCESS_TOKEN_EXPIRE_MINUTES = 15
+REFRESH_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7
+ACTIVATION_TOKEN_EXPIRE_MINUTES = 15
