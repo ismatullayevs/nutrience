@@ -46,7 +46,7 @@ class Profile(models.Model):
 class Goal(models.Model):
 
     name = models.CharField("Name", max_length=50)
-
+    
     class Meta:
         verbose_name = ("Goal")
         verbose_name_plural = ("Goals")
