@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Modal } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Modal, Image } from 'react-native';
+import Icon1 from '../assets/g1064.png'; // Import the PNG for the first step
+import Icon2 from '../assets/path262.png'; // Import the PNG for the second step
+import Icon3 from '../assets/path482.png'; // Import the PNG for the third step
+import Icon4 from '../assets/g657.png'; // Import the PNG for the fourth step
 
 export default function QuestionnaireScreen({ navigation }) {
   const [currentStep, setCurrentStep] = useState(1);
@@ -66,6 +70,20 @@ export default function QuestionnaireScreen({ navigation }) {
         <Text style={[styles.step, currentStep >= 4 && styles.activeStep]}>4</Text>
       </View>
 
+      {/* Step Icons */}
+      {currentStep === 1 && (
+        <Image source={Icon1} style={styles.icon} />
+      )}
+      {currentStep === 2 && (
+        <Image source={Icon2} style={styles.icon} />
+      )}
+      {currentStep === 3 && (
+        <Image source={Icon3} style={styles.icon} />
+      )}
+      {currentStep === 4 && (
+        <Image source={Icon4} style={styles.icon} />
+      )}
+
       {/* Render different steps based on currentStep */}
       {currentStep === 1 && (
         <View style={styles.stepContainer}>
@@ -75,19 +93,19 @@ export default function QuestionnaireScreen({ navigation }) {
             style={[styles.optionButton, goal === 'Fat Loss' && styles.selectedOption]}
             onPress={() => setGoal('Fat Loss')}
           >
-            <Text style={styles.optionText}>Fat Loss</Text>
+            <Text style={[styles.optionText, goal === 'Fat Loss' && styles.selectedOptionText]}>Fat Loss</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.optionButton, goal === 'Muscle Gain' && styles.selectedOption]}
             onPress={() => setGoal('Muscle Gain')}
           >
-            <Text style={styles.optionText}>Muscle Gain</Text>
+            <Text style={[styles.optionText, goal === 'Muscle Gain' && styles.selectedOptionText]}>Muscle Gain</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.optionButton, goal === 'Weight Maintenance' && styles.selectedOption]}
             onPress={() => setGoal('Weight Maintenance')}
           >
-            <Text style={styles.optionText}>Weight Maintenance</Text>
+            <Text style={[styles.optionText, goal === 'Weight Maintenance' && styles.selectedOptionText]}>Weight Maintenance</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -99,13 +117,13 @@ export default function QuestionnaireScreen({ navigation }) {
             style={[styles.optionButton, method === 'Meal Plan' && styles.selectedOption]}
             onPress={() => setMethod('Meal Plan')}
           >
-            <Text style={styles.optionText}>I need a meal plan</Text>
+            <Text style={[styles.optionText, method === 'Meal Plan' && styles.selectedOptionText]}>I need a meal plan</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.optionButton, method === 'Track Foods' && styles.selectedOption]}
             onPress={() => setMethod('Track Foods')}
           >
-            <Text style={styles.optionText}>I need to track my foods</Text>
+            <Text style={[styles.optionText, method === 'Track Foods' && styles.selectedOptionText]}>I need to track my foods</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -254,6 +272,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 20,
   },
+  icon: {
+    marginTop: 50,
+    alignSelf: 'center',
+    marginVertical: 20,
+    maxWidth: '30%',
+    maxHeight: '15%',
+    resizeMode: 'contain',
+  },
   step: {
     width: 30,
     height: 30,
@@ -294,6 +320,9 @@ const styles = StyleSheet.create({
   optionText: {
     fontSize: 16,
     color: '#000',
+  },
+  selectedOptionText: {
+    color: '#fff',
   },
   buttonContainer: {
     flexDirection: 'row',
